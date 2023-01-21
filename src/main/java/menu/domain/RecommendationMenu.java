@@ -5,18 +5,18 @@ import java.util.List;
 
 public class RecommendationMenu {
     private final String targetCoachName;
-    private final List<String> menus;
+    private final List<Food> menus;
 
     public RecommendationMenu(String targetCoachName) {
         this.targetCoachName = targetCoachName;
         menus = new ArrayList<>();
     }
 
-    public List<String> getMenus() {
+    public List<Food> getMenus() {
         return menus;
     }
 
-    public void add(String name) {
-        menus.add(name);
+    public void add(Food food) {
+        menus.add(food);
     }
 }

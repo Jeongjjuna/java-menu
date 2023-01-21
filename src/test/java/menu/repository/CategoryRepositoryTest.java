@@ -1,9 +1,11 @@
 package menu.repository;
 
+import menu.domain.Food;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -26,7 +28,8 @@ class CategoryRepositoryTest {
 
         List<Category> categories = categoryRepository.getCategories();
 
-        assertThat(categories.get(0).getMenus())
-                .isEqualTo(List.of("규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘", "오코노미야끼"));
+        assertThat(categories.get(0).getMenus().stream()
+                .map(food -> food.getName())
+                .collect(Collectors.toList())).isEqualTo(List.of("규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘", "오코노미야끼"));
     }
 }
