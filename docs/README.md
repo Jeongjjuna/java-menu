@@ -40,6 +40,10 @@ Recommendation
 Algorithm
 - [ ] 한 사람당 추천메뉴객체 생성하기(여기에 알고리즘)
 
+RecommendationMenu
+- [x] 추천메뉴들을 가져오기 - getMenus()
+- [x] 추천메뉴 한개 추가하기 - add()
+
 ### ui(V)
 - 입력
   - [ ] 코치 입력받기
