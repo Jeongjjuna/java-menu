@@ -38,7 +38,7 @@ Recommendation
 - [x] 모든 추천메뉴 생성하기(이름1추천메뉴객체, 이름2추천메뉴객체)
 
 Algorithm
-- [ ] 한 사람당 추천메뉴객체 생성하기(여기에 알고리즘)
+- [x] 한 사람당 추천메뉴객체 생성하기(여기에 알고리즘)
   - [x] 랜덤 카테고리 생성기능 - selectRandomCategory()
   - [x] 랜덤 메뉴 생성기능 - selectRandomMenu()
 
