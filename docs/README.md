@@ -39,6 +39,8 @@ Recommendation
 
 Algorithm
 - [ ] 한 사람당 추천메뉴객체 생성하기(여기에 알고리즘)
+  - [x] 랜덤 카테고리 생성기능 - selectRandomCategory()
+  - [ ] 랜덤 메뉴 생성기능 - 
 
 RecommendationMenu
 - [x] 추천메뉴들을 가져오기 - getMenus()
