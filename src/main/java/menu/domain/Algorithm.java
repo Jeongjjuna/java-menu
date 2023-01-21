@@ -6,6 +6,7 @@ import menu.repository.CategoryRepository;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Algorithm {
     public static void createRecommendationMenu(String coachName, List<Food> notEating, RecommendationMenu menu) {
@@ -22,15 +23,10 @@ public class Algorithm {
         for (int i = 0; i < 5; i++) {
             List<Category> categories = categoryRepository.getCategories();
 
-
-            // 카테고리 랜덤 선택
             Category category = selectRandomCategory(categories, categoryCheck);
+            Food randomMenu =  selectRandomMenu(category, notEating, menu);
 
-            // 카테고리에서 랜덤 메뉴 선택
-            String randomMenu = Randoms.shuffle(category.getMenus()).get(0).getName();
-
-            // 이제 여러가지 조건에 맞으면 menu.add(randomMenu)
-            menu.add(new Food(randomMenu, category.getName()));
+            menu.add(randomMenu);
         }
     }
 
@@ -47,4 +43,28 @@ public class Algorithm {
         return category;
     }
 
+    private static Food selectRandomMenu(Category category, List<Food> notEating, RecommendationMenu menu) {
+        String randomMenuName;
+
+        // 지금까지 추천된 메뉴 이름들
+        List<String> menuNames = menu.getMenus().stream()
+                .map(food -> food.getName())
+                .collect(Collectors.toList());
+
+        // 못먹는 메뉴 이름들
+        List<String> notEatingName = notEating.stream()
+                .map(food -> food.getName())
+                .collect(Collectors.toList());
+
+        while (true) {
+            randomMenuName = Randoms.shuffle(category.getMenus()).get(0).getName();
+
+            // 먼저 중복되는 메뉴 있는지 체크
+            if (!menuNames.contains(randomMenuName) && !notEatingName.contains(randomMenuName)) {
+                break;
+            }
+        }
+
+        return new Food(randomMenuName, category.getName());
+    }
 }
