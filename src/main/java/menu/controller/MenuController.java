@@ -1,5 +1,8 @@
 package menu.controller;
 
+import menu.model.Category;
+import menu.model.RandomGeneratorImpl;
+import menu.model.Recommender;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -30,7 +33,10 @@ public class MenuController {
     }
 
     private void recommend() {
-
+        // 카테고리 추천하기 기능
+        Recommender recommender = new Recommender();
+        do {
+            Category category = recommender.recommendCategory(new RandomGeneratorImpl());
+        }while (recommender.getRecommendedCategory().size() < 5);
     }
-
 }
