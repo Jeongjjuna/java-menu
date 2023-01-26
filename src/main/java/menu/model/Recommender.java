@@ -14,12 +14,13 @@ public class Recommender {
         this.coaches = coaches;
     }
 
-    public void recommendCategory(RandomGenerator generator) {
+    public Category recommendCategory(RandomGenerator generator) {
         Category category;
         do {
             category = Category.create(generator.generateRandomNumber());
         }while (is_duplicated(category));
         recommendedCategory.add(category);
+        return category;
     }
 
     private boolean is_duplicated(Category category) {
@@ -27,20 +28,21 @@ public class Recommender {
         return recommendedCategory.stream().filter(n -> n == category).count() >= 2;
     }
 
-    public void recommendMenu() {
+    public void recommendMenu(Category category) {
         // | 한식 | 한식 | 일식 | 중식 | 아시안 ]
         // 토미, 제임스, 포코
+
+        Food foods;
+        String menu;
         for (Coach coach : coaches) {
-            // coach에게 5일간의 메뉴 추천
-            for (Category category : recommendedCategory) {
-                Food foods = category.getFood();
-                String menu;
-                do {
-                    menu = Randoms.shuffle(foods.getFoods()).get(0);
-                }while (isDuplicatedMenu(coach, menu) || isContainNotEatMenu(coach, menu));
-                List<String> recommended = coach.getRecommendedMenu();
-                recommended.add(menu);
-            }
+            foods = category.getFood();
+            do {
+                System.out.println(foods.getFoods() + "여기서");
+                menu = Randoms.shuffle(foods.getFoods()).get(0);
+                System.out.println(coach.getName() + category.getCategoryName() + menu + " -> 이게 어떻게 나옴? \n");
+            }while (isDuplicatedMenu(coach, menu) || isContainNotEatMenu(coach, menu));
+            List<String> recommended = coach.getRecommendedMenu();
+            recommended.add(menu);
         }
     }
 
