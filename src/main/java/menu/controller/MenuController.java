@@ -14,14 +14,14 @@ public class MenuController {
     private final int recommendDays = 5;
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
-    List<String> coachNames = new ArrayList<>();
+    List<Category> recommendedCategory;
     List<Coach> coaches = new ArrayList<>();
 
     public void run() {
         outputView.printServiceStart();
 
         outputView.printInputCoachName();
-        coachNames = inputView.inputCoachName();
+        List<String> coachNames = inputView.inputCoachName();
 
         for (String coachName : coachNames) {
             outputView.printInputCoachNotEat(coachName);
@@ -30,7 +30,7 @@ public class MenuController {
         }
 
         recommend();
-        outputView.printServiceResult();
+        outputView.printServiceResult(recommendedCategory, coaches);
         outputView.printServiceEnd();
     }
 
@@ -39,10 +39,12 @@ public class MenuController {
 
         // 카테고리 추천하기 기능
         for (int day = 0; day < recommendDays; day++) {
-            recommender.recommendCategory(new RandomGeneratorImpl());
+            Category category = recommender.recommendCategory(new RandomGeneratorImpl());
+            // 메뉴 추천하기 기능
+            recommender.recommendMenu(category);
         }
+        recommendedCategory = recommender.getRecommendedCategory();
 
-        // 메뉴 추천하기 기능
-        recommender.recommendMenu();
+
     }
 }

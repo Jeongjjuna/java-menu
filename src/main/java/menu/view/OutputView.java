@@ -1,6 +1,10 @@
 package menu.view;
 
-import java.awt.desktop.OpenURIEvent;
+import menu.model.Category;
+import menu.model.Coach;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
     private enum ServiceControlMessage {
@@ -32,8 +36,19 @@ public class OutputView {
         System.out.printf(ServiceControlMessage.INPUT_COACH_NOT_EAT.getMessage(), coach);
     }
 
-    public void printServiceResult() {
+    public void printServiceResult(List<Category> recommendedCategory, List<Coach> coaches) {
         System.out.println(ServiceControlMessage.SERVICE_RESULT.getMessage());
+        System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
+        List<String> categories = recommendedCategory.stream()
+                .map(Category::getCategoryName)
+                .collect(Collectors.toList());
+
+        System.out.println("[ 카테고리 | " + String.join(" | ", categories) + " ]");
+
+        for (Coach coach : coaches) {
+            List<String> recommendedMenu = coach.getRecommendedMenu();
+            System.out.println("[ " + coach.getName() + " | " + String.join(" | ", recommendedMenu) + " ]");
+        }
     }
 
     public void printServiceEnd() {
