@@ -57,8 +57,4 @@ public class Recommender {
     public List<Category> getRecommendedCategory() {
         return recommendedCategory;
     }
-
-    public List<Coach> getCoaches() {
-        return coaches;
-    }
 }

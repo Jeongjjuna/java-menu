@@ -45,6 +45,5 @@ public class MenuController {
         }
         recommendedCategory = recommender.getRecommendedCategory();
 
-
     }
 }
