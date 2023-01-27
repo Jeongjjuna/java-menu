@@ -12,14 +12,20 @@ import java.util.List;
 
 public class MenuController {
     private final int recommendDays = 5;
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
-    List<Category> recommendedCategory;
-    List<Coach> coaches = new ArrayList<>();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private List<Category> recommendedCategory;
+    private List<Coach> coaches = new ArrayList<>();
 
     public void run() {
         outputView.printServiceStart();
+        input();
+        recommend();
+        outputView.printServiceResult(recommendedCategory, coaches);
+        outputView.printServiceEnd();
+    }
 
+    private void input() {
         outputView.printInputCoachName();
         List<String> coachNames = inputView.inputCoachName();
 
@@ -28,10 +34,6 @@ public class MenuController {
             Coach coach = new Coach(coachName, inputView.inputCoachNotEat());
             coaches.add(coach);
         }
-
-        recommend();
-        outputView.printServiceResult(recommendedCategory, coaches);
-        outputView.printServiceEnd();
     }
 
     private void recommend() {

@@ -19,7 +19,6 @@ public enum Category {
         this.food = food;
     }
 
-    // 카테고리 아이디를 입력했을 떄 아이디 값에 맞는 카테고리를 생성해주는 함수
     public static Category create(int categoryId) {
         return Arrays.stream(Category.values())
                 .filter(category -> category.categoryId == categoryId)

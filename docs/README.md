@@ -1,39 +1,31 @@
 ## 🚀 기능 목록
 
-![img.png](img.png)
-
-
 ### contants
 
 ### Controller
 
-- MenuService
-  - [ ] 못먹는 정보 입력받기 -> View(interface)에 위임
-  - [ ] 못먹는 정보 생성하기 -> InfomationGenerator(interface)에 위임
-  - [ ] 추천하는 정보 생성하기 -> InfomationGenerator(interface)에 위임
-  - [ ] 추천하는 정보 출력하기 -> View(interface)에 위임
+- MenuController
+  - [x] 잘 실행 하는지 - run()
   
   
 ### Model
-- InfomationGenerator(interface) - creatInfomation()
-  - FoodInformationCoachCanTEat(Impl)
-    - [ ] 못먹는 정보 생성 - creatInformation(String coach, List< String> menus)  
-      // coach = "토미,제임스,포코"  
-      // menus = {"우동,스시", "뇨끼,월남쌈", "마파두부,고추잡채"}  
-
-
-  - RecommendationInformation(Impl)
-    - [ ] 추천하는 정보 생성 - creatInformation(FoodInformationCoachCanTEat : foodInfoCanTEat)  
-    
-
-- RecommendationInfoGenerator(interface)
-  - Algorithm
-    - [ ] 추천 카테고리 생성 - createCategories() : List< String >
-    - [ ] 추천메뉴 생성 - createMenus(List< String > : categories, FoodInformationCoachCanTEat : foodInfoCanTEat) : List<List< String >>
+- Category(Enum) - 카테고리 보관
+- Food(Enum) - 카테고리에 따른 음식 보관
+- Coach - 코치 정보를 담고있음(이름, 못먹는 음식, 추천받은 메뉴들)
+- RandomGeneratorImpl
+  - [x] 1~5랜덤 번호 생성 - generateRandomNumber()
+- Recommender
+  - [x] 카테고리 추천하기 - recommendCategory(RandomGenerator generator)
+  - [x] 카테고리에 따른 메뉴 추천하기 - recommendMenu(Category category)
 
 ### View
-- InputUI
-  - [ ] 못먹는 정보 입력받기 - inputFoodInfoCoachCanTEat()
+- InputView
+  - [x] 코치이름 입력받기 - inputCoachName()
+  - [x] 못먹는 정보 입력받기 - inputCoachNotEat()
 
-- OutputUI
-  - [ ] 추천하는 정보 출력하기 - outputRecommendationInfo()
+- OutputView
+  - [x] 서비스 시작 문구 출력 - printServiceStart()
+  - [x] 코치이름 입력 문구 출력 - printInputCoachName()
+  - [x] 못먹는 음식 입력 문구 출력 - printInputCoachNotEat(String coach)
+  - [x] 추천 결과 문구 출력 - printServiceResult(List< Category > recommendedCategory, List<Coach> coaches)
+  - [x] 서비스 종료 문구 출력 -printServiceEnd()

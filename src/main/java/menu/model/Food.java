@@ -16,6 +16,6 @@ public enum Food {
     }
 
     public List<String> getFoods() {
-        return foods;
+        return this.foods;
     }
 }

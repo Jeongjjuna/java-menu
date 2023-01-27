@@ -15,14 +15,14 @@ public class Coach {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public List<String> getNotEatMenu() {
-        return notEatMenu;
+        return this.notEatMenu;
     }
 
     public List<String> getRecommendedMenu() {
-        return recommendedMenu;
+        return this.recommendedMenu;
     }
 }
